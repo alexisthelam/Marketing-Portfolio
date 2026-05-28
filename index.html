@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexis Lam — Product Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Palette ─────────────────────────────────────── */
+    :root {
+      --cream:    #FAF8F2;
+      --cream-2:  #F2EDE3;
+      --ink:      #1A1510;
+      --ink-soft: #4A4035;
+      --matcha:   #575527;
+      --sakura:   #B97D7B;
+      --bean:     #5C2A28;
+      --rule:     #D9D2C3;
+    }
+
+    /* ─── Reset ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 0.4rem; }
+    h3 { font-size: 1.12rem; }
+    p  { color: var(--ink-soft); max-width: 62ch; }
+    a  { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5.5rem 0; border-top: 1px solid var(--rule); }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--sakura);
+      margin-bottom: 1rem;
+    }
+
+    /* ─── Nav ─────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0; z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--matcha); }
+
+    /* ─────────────────────────────────────────────────────
+       HERO CANVAS
+    ───────────────────────────────────────────────────── */
+
+    #hero {
+      border-top: none;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .canvas {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 820px;
+    }
+
+    .canvas-label {
+      position: absolute;
+      top: 22px; left: 32px;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      opacity: 0.45;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    /* ── Editorial title — full-width banner across the top */
+    .hero-title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 32px 2rem 0;
+      z-index: 6;
+      pointer-events: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 24px;
+    }
+
+    .title-intro {
+      display: block;
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      opacity: 0.65;
+      margin-bottom: 4px;
+    }
+
+    .title-intro strong {
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .title-and { display: none; }
+
+    .title-main {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: clamp(3.2rem, 6.5vw, 5.6rem);
+      line-height: 1.0;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .title-main em {
+      font-style: italic;
+      color: var(--sakura);
+    }
+
+    /* ── Bag — sits in the lower half, near the section line */
+    .bag-wrap {
+      position: absolute;
+      width: 340px;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 310px;
+      z-index: 2;
+    }
+
+    .bag-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      mix-blend-mode: multiply;
+    }
+
+    /* ── Canvas hint */
+    .canvas-hint {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rule);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* ─────────────────────────────────────────────────────
+       ITEMS — shared
+    ───────────────────────────────────────────────────── */
+
+    .item {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--ink);
+      z-index: 3;
+      --rot: 0deg;
+      transform: rotate(var(--rot));
+      transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .item:hover {
+      transform: rotate(var(--rot)) scale(1.13) translateY(-18px);
+      z-index: 10;
+    }
+
+    /* mix-blend-mode: multiply removes white backgrounds.
+       A very soft shadow still reads against the cream page. */
+    .item-img {
+      display: block;
+      height: var(--item-h, 120px);
+      width: auto;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(2px 4px 10px rgba(0,0,0,0.10));
+      transition: filter 0.3s ease;
+    }
+
+    .item:hover .item-img {
+      filter: drop-shadow(5px 14px 28px rgba(0,0,0,0.18));
+    }
+
+    .item-label {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+
+    /* ─────────────────────────────────────────────────────
+       ITEM POSITIONS (1200 × 640 canvas, bag center ≈ x:600 y:300)
+    ───────────────────────────────────────────────────── */
+
+    .item-notebook   { left:  70px; top: 390px; --rot: -8deg;  --item-h: 170px; }
+    .item-sunglasses { left: 165px; top: 310px; --rot: -5deg;  --item-h: 120px; }
+    .item-macbook    { left: 730px; top: 305px; --rot:  9deg;  --item-h: 155px; }
+    .item-camera     { left: 840px; top: 455px; --rot: 12deg;  --item-h: 120px; }
+    .item-matcha     { left: 760px; top: 590px; --rot: -6deg;  --item-h: 185px; }
+
+    /* ─────────────────────────────────────────────────────
+       SECTIONS
+    ───────────────────────────────────────────────────── */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Headshot */
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: var(--cream-2);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rule);
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.6rem; }
+
+    .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.82rem;
+      border: 1px solid var(--rule);
+      color: var(--ink-soft);
+    }
+
+    .tag-m { border-color: var(--matcha); color: var(--matcha); }
+    .tag-s { border-color: var(--sakura); color: var(--sakura); }
+    .tag-b { border-color: var(--bean);   color: var(--bean); }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 2px;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--cream-2);
+      border: 1px solid var(--rule);
+      padding: 1.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: var(--ink-soft); }
+
+    .card-bar { width: 2rem; height: 3px; }
+    .bar-m { background: var(--matcha); }
+    .bar-s { background: var(--sakura); }
+    .bar-b { background: var(--bean); }
+
+    .card-meta {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sakura);
+    }
+
+    .card h3 { font-size: 1.08rem; }
+    .card p  { font-size: 0.9rem; line-height: 1.65; }
+
+    .card-link {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--matcha);
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+    }
+
+    .card-link:hover { color: var(--bean); }
+
+    /* Creative Vault — image swatches */
+    .vault-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2px;
+      margin-top: 2rem;
+    }
+
+    .vault-swatch {
+      aspect-ratio: 4 / 3;
+      background: var(--matcha);
+      border: 1px solid var(--matcha);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.2s, border-color 0.2s;
+      overflow: hidden;
+    }
+
+    .vault-swatch:hover { background: #3f3d1c; border-color: #3f3d1c; }
+
+    .vault-swatch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .vault-swatch-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .vault-plus {
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .skill-group h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding-bottom: 0.45rem;
+      margin-bottom: 0.65rem;
+      border-bottom: 1.5px solid var(--rule);
+    }
+
+    .skill-group h4.m { border-color: var(--matcha); }
+    .skill-group h4.s { border-color: var(--sakura); }
+    .skill-group h4.b { border-color: var(--bean); }
+
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.28rem; }
+    .skill-list li { font-size: 0.88rem; color: var(--ink-soft); }
+
+    /* How I Work */
+    .strategy-block {
+      max-width: 760px;
+      margin-top: 2rem;
+    }
+
+    .strategy-block p + p { margin-top: 1.2rem; }
+
+    .strategy-block p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 68ch;
+    }
+
+    /* Resume */
+    .resume-entry {
+      display: grid;
+      grid-template-columns: 145px 1fr;
+      gap: 2rem;
+      padding: 1.7rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .resume-entry:first-of-type { border-top: 1px solid var(--rule); }
+
+    .resume-date { font-size: 0.76rem; color: var(--ink-soft); padding-top: 0.1rem; }
+
+    .resume-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.12rem;
+    }
+
+    .resume-org { font-size: 0.8rem; color: var(--matcha); letter-spacing: 0.05em; margin-bottom: 0.45rem; }
+    .resume-desc { font-size: 0.88rem; line-height: 1.6; max-width: 58ch; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.58rem 1.45rem;
+      border: 1.5px solid var(--ink);
+      font-family: 'EB Garamond', serif;
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      margin-top: 2rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover { background: var(--ink); color: var(--cream); }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2px;
+      margin-top: 2rem;
+    }
+
+    .testimonial {
+      padding: 1.7rem;
+      border: 1px solid var(--matcha);
+      background: var(--matcha);
+    }
+
+    .testimonial blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial blockquote::before {
+      content: '\201C';
+      font-size: 2rem;
+      line-height: 0;
+      vertical-align: -0.45rem;
+      color: rgba(255,255,255,0.5);
+      margin-right: 0.1rem;
+    }
+
+    .t-attr { font-size: 0.78rem; color: rgba(255,255,255,0.65); }
+    .t-attr strong { display: block; color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    /* Orgs */
+    .orgs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 2px;
+      margin-top: 2rem;
+    }
+
+    .org-cell {
+      padding: 1.5rem 1.3rem;
+      border: 1px solid var(--matcha);
+      background: var(--matcha);
+      display: flex; flex-direction: column; gap: 0.45rem;
+    }
+
+    .org-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.5) !important; }
+    .org-cell span { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 600; color: #fff; }
+    .org-cell p { font-size: 0.78rem; line-height: 1.5; max-width: none; color: rgba(255,255,255,0.75); }
+
+    /* Contact */
+    #contact { text-align: center; }
+    #contact h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.7rem; }
+    #contact > .container > p { margin: 0 auto 2rem; }
+
+    .contact-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-links a:hover { color: var(--bean); border-color: var(--bean); }
+
+    /* Footer */
+    footer {
+      padding: 1.8rem 0;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--rule);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── Lightbox Modal ──────────────────────────────── */
+    #modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(26,21,16,0.82);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    #modal-overlay.open { display: flex; }
+
+    .modal-box {
+      position: relative;
+      width: 90vw;
+      max-width: 1080px;
+      height: 82vh;
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 1.2rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--cream-2);
+      flex-shrink: 0;
+    }
+
+    .modal-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .modal-actions { display: flex; gap: 0.75rem; align-items: center; }
+
+    .modal-open-btn {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--matcha);
+      text-decoration: none;
+      border-bottom: 1px solid var(--matcha);
+      padding-bottom: 1px;
+    }
+
+    .modal-close {
+      background: none;
+      border: 1.5px solid var(--rule);
+      width: 28px; height: 28px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .modal-close:hover { border-color: var(--bean); color: var(--bean); }
+
+    #modal-frame {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+
+    /* vault / project link trigger */
+    .open-modal {
+      cursor: pointer;
+    }
+
+    .vault-swatch.open-modal { position: relative; }
+    .vault-swatch.open-modal::after {
+      content: '↗';
+      position: absolute;
+      top: 8px; right: 10px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ─── Responsive ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .canvas {
+        height: auto;
+        padding: 2rem 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .canvas-label { position: static; order: -1; margin-bottom: -1rem; }
+
+      .hero-title {
+        position: static;
+        transform: none;
+        width: auto;
+        max-width: 340px;
+        order: 0;
+      }
+
+      .bag-wrap {
+        position: static;
+        transform: none;
+        width: 220px;
+        order: 1;
+      }
+
+      .item {
+        position: static;
+        --rot: 0deg !important;
+        transform: none !important;
+      }
+
+      .mobile-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        order: 2;
+        padding: 1rem 0 0.5rem;
+      }
+
+      .canvas-hint { position: static; transform: none; margin-top: 0.5rem; order: 3; }
+
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+      .resume-entry { grid-template-columns: 1fr; gap: 0.35rem; }
+      .nav-links { gap: 1.2rem; }
+    }
+
+    @media (min-width: 901px) {
+      .mobile-items { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Nav ──────────────────────────────────────── -->
+  <nav>
+    <div class="container">
+      <span class="nav-logo">Alexis Lam</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ─────────────────────────────────────── -->
+  <section id="hero">
+    <div class="canvas">
+
+      <span class="canvas-label">✦ the portfolio page ✦</span>
+
+      <div class="hero-title">
+        <span class="title-intro">I'm <strong>Alexis,</strong></span>
+        <span class="title-and">and this is</span>
+        <span class="title-main">what's in<br><em>my bag.</em></span>
+      </div>
+
+      <!-- Bag — white background blends away via multiply -->
+      <div class="bag-wrap">
+        <img src="red%20bag.png" alt="Samo Ondoh burgundy leather tote" />
+      </div>
+
+      <!-- DESKTOP ITEMS -->
+
+      <!-- Moleskine Notebook → About -->
+      <a href="#about" class="item item-notebook" aria-label="About">
+        <img src="green%20notebook.png" alt="Green Moleskine notebook" class="item-img">
+        <span class="item-label">About</span>
+      </a>
+
+      <!-- Gentle Monster Sunglasses → Skills -->
+      <a href="#skills" class="item item-sunglasses" aria-label="Skills">
+        <img src="gentle%20monster%20sunglasses%20.png" alt="Gentle Monster sunglasses" class="item-img">
+        <span class="item-label">Skills</span>
+      </a>
+
+      <!-- MacBook → Work -->
+      <a href="#work" class="item item-macbook" aria-label="Work">
+        <img src="macbook%20.png" alt="MacBook" class="item-img">
+        <span class="item-label">Work</span>
+      </a>
+
+      <!-- Digital Camera → Resume -->
+      <a href="#resume" class="item item-camera" aria-label="Resume">
+        <img src="digital%20camera%20.png" alt="Digital camera" class="item-img">
+        <span class="item-label">Resume</span>
+      </a>
+
+      <!-- Le Labo Matcha → Contact -->
+      <a href="#contact" class="item item-matcha" aria-label="Contact">
+        <img src="the%20matcha%20.png" alt="Le Labo Thé Matcha 26" class="item-img">
+        <span class="item-label">Contact</span>
+      </a>
+
+      <!-- MOBILE: items in a row -->
+      <div class="mobile-items">
+        <a href="#about"   class="item" style="--item-h:90px"  aria-label="About">
+          <img src="green%20notebook.png" alt="notebook" class="item-img">
+          <span class="item-label">About</span>
+        </a>
+        <a href="#skills"  class="item" style="--item-h:60px"  aria-label="Skills">
+          <img src="gentle%20monster%20sunglasses%20.png" alt="sunglasses" class="item-img">
+          <span class="item-label">Skills</span>
+        </a>
+        <a href="#work"    class="item" style="--item-h:85px"  aria-label="Work">
+          <img src="macbook%20.png" alt="MacBook" class="item-img">
+          <span class="item-label">Work</span>
+        </a>
+        <a href="#resume"  class="item" style="--item-h:65px"  aria-label="Resume">
+          <img src="digital%20camera%20.png" alt="camera" class="item-img">
+          <span class="item-label">Resume</span>
+        </a>
+        <a href="#contact" class="item" style="--item-h:100px" aria-label="Contact">
+          <img src="the%20matcha%20.png" alt="matcha" class="item-img">
+          <span class="item-label">Contact</span>
+        </a>
+      </div>
+
+      <span class="canvas-hint">hover an item &nbsp;·&nbsp; click to explore</span>
+
+    </div>
+  </section>
+
+
+  <!-- ─── About ────────────────────────────────────── -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <div class="two-col">
+
+        <img
+          src="headshot.jpg"
+          alt="Alexis Lam"
+          class="about-photo"
+        />
+
+        <div>
+          <h2 style="font-size:clamp(2rem,4vw,3rem); margin-bottom:1rem;">Hi, I'm Alexis.</h2>
+          <p style="margin-top:0">
+            I'm a Yale student interested in the intersection of strategy, storytelling, and systems-building across fintech, education, fashion, and digital media. My experience spans startup growth, branding, research, content development, and operations — and I'm especially drawn to roles where I can turn ideas into clear strategies, stronger systems, and audience-facing work that actually resonates.
+          </p>
+          <p style="margin-top:1rem">
+            I enjoy working in fast-paced environments where I can move between big-picture thinking and hands-on execution, whether that means building a workflow, shaping a brand message, creating content, or helping a team make sense of data.
+          </p>
+          <p style="margin-top:1rem">
+            Yale Class of 2027 · Political Science & Education Studies · Emma Bowen Foundation Fellow · Nike Scholarship recipient. Currently open to marketing roles, internships, and select freelance projects.
+          </p>
+          <div class="tags">
+            <span class="tag tag-m">Product Marketing</span>
+            <span class="tag tag-s">Social Strategy</span>
+            <span class="tag tag-b">Digital Campaigns</span>
+            <span class="tag">Content Creation</span>
+            <span class="tag">GTM</span>
+            <span class="tag">Brand Identity</span>
+            <span class="tag">CRM & Ops</span>
+            <span class="tag">Data & Research</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── Case Studies ─────────────────────────────── -->
+  <section id="work">
+    <div class="container">
+      <p class="section-label">High-Impact Projects</p>
+      <h2>Selected Work</h2>
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-bar bar-m"></div>
+          <span class="card-meta">Product Strategy · 2025</span>
+          <h3>Repositioning a legacy bank for the student generation.</h3>
+          <p>Led go-to-market strategy and deck for EverBank's Innovation Challenge, pitching a Student Mode mobile feature to address banking literacy gaps and hidden-fee distrust among Gen Z. Built competitive analysis, compliance framework, and positioning from the ground up.</p>
+          <p style="margin-top:0.5rem; color:var(--matcha); font-size:0.88rem;">
+            Innovation Challenge Finalist &nbsp;·&nbsp; Tech Track
+          </p>
+          <span class="card-link open-modal" onclick="openModal('everbank-innovation-challenge.pdf', 'EverBank Innovation Challenge')">View Deck →</span>
+        </div>
+
+        <div class="card">
+          <div class="card-bar bar-s"></div>
+          <span class="card-meta">Conference Branding · 2024–Present</span>
+          <h3>Conference branding at international scale.</h3>
+          <p>As Under-Secretary-General of Branding at Yale International Relations Association, led visual identity and social strategy across 3 international YMUN/YMUNE conferences serving 500–2,000+ delegates from 35+ countries.</p>
+          <p style="margin-top:0.5rem; color:var(--sakura); font-size:0.88rem;">
+            +20% engagement &nbsp;·&nbsp; +$2K merch revenue &nbsp;·&nbsp; +30% sales lift
+          </p>
+          <span class="card-link open-modal" onclick="openModal('ymune-xiv-delegate-guide.pdf', 'YMUNE XIV Delegate Guide')">View Sample →</span>
+        </div>
+
+        <div class="card">
+          <div class="card-bar bar-b"></div>
+          <span class="card-meta">Content Marketing · 2024–2025</span>
+          <h3>The content that earned a Marketing Hero Award.</h3>
+          <p>As a Student Ambassador for LSE Summer School, developed multimedia content, blog posts, social campaigns, and presentation materials for the Marketing and Recruitment team — 1 of 500+ applicants selected. Recognised with the Marketing Hero Ambassador Award in June 2025.</p>
+          <p style="margin-top:0.5rem; color:var(--bean); font-size:0.88rem;">
+            +25% prospective student engagement &nbsp;·&nbsp; Marketing Hero Award
+          </p>
+          <span class="card-link open-modal" onclick="openModal('lse-marketing-hero-award.pdf', 'LSE Marketing Hero Award')">View Award →</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── Creative Vault ───────────────────────────── -->
+  <section id="vault">
+    <div class="container">
+      <p class="section-label">Creative Vault</p>
+      <h2>The Swatches</h2>
+      <p style="margin-bottom:0">Campaigns, creatives, and collateral — the visual side of the work.</p>
+      <div class="vault-grid">
+
+        <div class="vault-swatch open-modal" onclick="openModal('everbank-innovation-challenge.pdf', 'EverBank — Innovation Challenge Deck')">
+          <span class="vault-plus">↗</span>
+          <span class="vault-swatch-label">EverBank · Product Deck</span>
+        </div>
+
+        <div class="vault-swatch open-modal" onclick="openModal('ymune-xiv-delegate-guide.pdf', 'YMUNE XIV — Delegate Guide')">
+          <span class="vault-plus">↗</span>
+          <span class="vault-swatch-label">YMUNE XIV · Delegate Guide</span>
+        </div>
+
+        <div class="vault-swatch open-modal" onclick="openModal('calmware-brand-guidelines.pdf', 'Calmware — Brand Guidelines')">
+          <span class="vault-plus">↗</span>
+          <span class="vault-swatch-label">Calmware · Brand Guidelines</span>
+        </div>
+
+        <div class="vault-swatch open-modal" onclick="openModal('lse-marketing-hero-award.pdf', 'LSE Summer School — Marketing Hero Award')">
+          <span class="vault-plus">↗</span>
+          <span class="vault-swatch-label">LSE · Marketing Hero Award</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── Skills ───────────────────────────────────── -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">The Essentials</p>
+      <h2>My Toolkit</h2>
+      <p style="margin-bottom:0">What I reach for every single day to drive results.</p>
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <h4 class="m">Strategy</h4>
+          <ul class="skill-list">
+            <li>Product & GTM Strategy</li>
+            <li>Market Positioning</li>
+            <li>Competitive Research</li>
+            <li>Audience Segmentation</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h4 class="s">Social & Content</h4>
+          <ul class="skill-list">
+            <li>Social Strategy (Org. + Paid)</li>
+            <li>Content Creation & Copy</li>
+            <li>UGC Direction</li>
+            <li>Editorial Planning</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h4 class="b">Execution</h4>
+          <ul class="skill-list">
+            <li>Campaign Management</li>
+            <li>Paid Social & SEM</li>
+            <li>Email & Lifecycle</li>
+            <li>Launch Planning</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h4>Measurement</h4>
+          <ul class="skill-list">
+            <li>Analytics & Attribution</li>
+            <li>A/B Testing</li>
+            <li>KPI Reporting</li>
+            <li>Funnel Analysis</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h4 class="m">Technical</h4>
+          <ul class="skill-list">
+            <li>Python · R · SQL · Stata</li>
+            <li>HTML · CSS · GitHub</li>
+            <li>Tableau · Excel · Airtable</li>
+            <li>Supervised Machine Learning</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h4 class="s">Tools & Platforms</h4>
+          <ul class="skill-list">
+            <li>Canva · Adobe Creative Cloud</li>
+            <li>Notion · Zapier · monday.com</li>
+            <li>Squarespace · Mailchimp</li>
+            <li>CapCut · Photoshop</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h4 class="b">Languages</h4>
+          <ul class="skill-list">
+            <li>Vietnamese (Native)</li>
+            <li>Japanese (Intermediate)</li>
+            <li>Mandarin (Elementary)</li>
+            <li>French (Elementary)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ─── Resume ───────────────────────────────────── -->
+  <section id="resume">
+    <div class="container">
+      <p class="section-label">Experience</p>
+      <h2>Resume</h2>
+
+      <div class="resume-entry">
+        <span class="resume-date">Jun 2026 – Present</span>
+        <div>
+          <p class="resume-role">Incoming Digital Licensing Intern</p>
+          <p class="resume-org">Broadcast Music Inc. (BMI) · New York City — via Emma Bowen Foundation Fellowship</p>
+          <p class="resume-desc">Focused on digital content licensing, rights management, and media distribution strategy. One of ~150 EBF Fellows selected nationally from thousands of applicants.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Aug 2025 – Present</span>
+        <div>
+          <p class="resume-role">Venture Development Program Coordinator</p>
+          <p class="resume-org">Tsai Center for Innovative Thinking at Yale · New Haven, CT</p>
+          <p class="resume-desc">Improved go-to-market execution for 10+ early-stage ventures. Led workshops on campaign optimisation, AI tools, and operations; streamlined cross-functional coordination via monday.com and Airtable.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Jun – Aug 2025</span>
+        <div>
+          <p class="resume-role">Venture Marketing Associate</p>
+          <p class="resume-org">Tsai Center for Innovative Thinking at Yale · New Haven, CT</p>
+          <p class="resume-desc">Executed branding, digital marketing, and investor outreach for 5 ventures — Calmware, Nudist Audio, Aroomy, Verustruct, PrevisionLabs. Built and automated CRM systems tracking 100+ investor relationships.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Apr 2024 – Present</span>
+        <div>
+          <p class="resume-role">Under-Secretary-General of Branding</p>
+          <p class="resume-org">Yale International Relations Association (YIRA) · International</p>
+          <p class="resume-desc">Led branding strategy, social media marketing, and campaign performance analysis across 3 international conferences (500–2,000+ delegates, 35+ countries). +20% engagement growth, +$2K merch revenue, +30% sales lift on a $7K budget.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Jun 2024 – Jun 2025</span>
+        <div>
+          <p class="resume-role">Student Ambassador (Marketing Hero)</p>
+          <p class="resume-org">The London School of Economics Summer School · London, UK</p>
+          <p class="resume-desc">Developed multimedia content, blog posts, social campaigns, and videos for the Marketing and Recruitment team. Selected from 500+ applicants; earned the Marketing Hero Ambassador Award, June 2025. +25% prospective student engagement.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Apr 2026 – Present</span>
+        <div>
+          <p class="resume-role">Incoming Marketing Consultant</p>
+          <p class="resume-org">Stealth Startup</p>
+          <p class="resume-desc">Providing strategic marketing consultation for an early-stage stealth startup.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Feb 2025 – Present</span>
+        <div>
+          <p class="resume-role">Undergraduate Research Assistant</p>
+          <p class="resume-org">Yale Institute for Social and Policy Studies · New Haven, CT</p>
+          <p class="resume-desc">Collecting and cataloguing 500+ local newspaper endorsements from online archives under Professor Kevin DeLuca, contributing to a comprehensive elections research database. Generated analysis reports and visualisations using Stata, R, and SQL.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Aug 2025 – Present</span>
+        <div>
+          <p class="resume-role">Good Life Center Intern</p>
+          <p class="resume-org">Yale University · New Haven, CT</p>
+          <p class="resume-desc">Supporting wellbeing and community programming initiatives at Yale's Good Life Center.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Sep 2024 – Mar 2026</span>
+        <div>
+          <p class="resume-role">Staff Reporter · Staff Photographer · Instagram Editor</p>
+          <p class="resume-org">Yale Daily News · New Haven, CT</p>
+          <p class="resume-desc">Reported, photographed, and managed audience growth as Audience Desk Instagram Editor — growing the YDN's Instagram presence and engagement across multiple roles over 2+ years.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Aug 2022 – Present</span>
+        <div>
+          <p class="resume-role">Thrive Corporate Scholar</p>
+          <p class="resume-org">Latham & Watkins · National</p>
+          <p class="resume-desc">Chosen for a corporate sponsorship out of 300 Thrive Scholars. Gaining exposure to corporate law and receiving ongoing support toward potential future employment.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Dec 2023 – Aug 2025</span>
+        <div>
+          <p class="resume-role">English Second Language Tutor</p>
+          <p class="resume-org">Ringle · Remote</p>
+          <p class="resume-desc">Delivered private 1-on-1 English tutoring covering discussion practice, vocabulary, grammar, sentence structure, presentation prep, and essay proofreading.</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Education</span>
+        <div>
+          <p class="resume-role">B.A. Political Science, Certificate in Education Studies</p>
+          <p class="resume-org">Yale University · Class of 2027 · GPA 3.70 · Pi Sigma Alpha · Nike Scholarship</p>
+        </div>
+      </div>
+
+      <div class="resume-entry">
+        <span class="resume-date">Jun – Jul 2024</span>
+        <div>
+          <p class="resume-role">Summer School</p>
+          <p class="resume-org">London School of Economics and Political Science (LSE) · London, UK</p>
+        </div>
+      </div>
+
+      <a href="resume.pdf" class="btn" target="_blank">Download Full Resume (PDF)</a>
+    </div>
+  </section>
+
+
+  <!-- ─── Testimonials ─────────────────────────────── -->
+  <section id="testimonials">
+    <div class="container">
+      <p class="section-label">Testimonials</p>
+      <h2>What People Say</h2>
+      <div class="testimonials">
+
+        <div class="testimonial">
+          <blockquote>We are so glad to have you Alexis! It's great to know you had a rewarding journey in the past year.</blockquote>
+          <p class="t-attr"><strong>Chloe Kwong</strong>Global Partnerships & Student Recruitment Specialist, LSE Summer School</p>
+        </div>
+
+        <div class="testimonial">
+          <blockquote>What a great crew!! Excited to have you back this fall!!</blockquote>
+          <p class="t-attr"><strong>Matthew Gira</strong>Lead Brand Strategist — helping bootstrapped founders scale to $250k+ ARR</p>
+        </div>
+
+        <div class="testimonial">
+          <blockquote>It was a wonderful experience working with you! Wishing you all the best for the future!</blockquote>
+          <p class="t-attr"><strong>Ameesha Masand</strong>Clinical Care to Digital Health | AI in Healthcare, Yale University</p>
+        </div>
+
+        <div class="testimonial">
+          <blockquote>Congratulations on your podcast feature, Alexis! It's incredible to see how your piece on "Gilmore Girls" resonated beyond your immediate circle and earned you this fantastic opportunity.</blockquote>
+          <p class="t-attr"><strong>Harley Mind Care Psychiatrists</strong>via LinkedIn · on Yale Daily News feature</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── Organizations ────────────────────────────── -->
+  <section id="organizations">
+    <div class="container">
+      <p class="section-label">Past Organizations</p>
+      <h2>Places I've Made an Impact</h2>
+      <div class="orgs-grid">
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--matcha)"></div>
+          <span>Emma Bowen Foundation</span>
+          <p>Fellow — multi-year paid fellowship supporting students of color in media and tech. Placed at BMI, 2026.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--sakura)"></div>
+          <span>Thrive Scholars</span>
+          <p>Scholar — one of 300+ selected from 40,000 applicants for a 6-year professional development programme for underrepresented first-gen talent.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--bean)"></div>
+          <span>Yale International Relations Association</span>
+          <p>USG Branding: YMUN LI (2,000+ delegates), YMUN Europe (400+), YMUN Korea. $7K merch budgets, +18% engagement.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--matcha)"></div>
+          <span>LSE Summer School</span>
+          <p>Student Ambassador — Marketing Hero Award winner, June 2025.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--sakura)"></div>
+          <span>Pi Sigma Alpha</span>
+          <p>National Political Science Honors Society — Yale chapter member.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--bean)"></div>
+          <span>Tsai CITY at Yale</span>
+          <p>Venture Development Program Coordinator & Venture Marketing Associate supporting early-stage founders.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--matcha)"></div>
+          <span>Yale Daily News</span>
+          <p>Staff Reporter, Staff Photographer, and Audience Desk Instagram Editor — 2+ years growing YDN's digital presence.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--sakura)"></div>
+          <span>Latham & Watkins</span>
+          <p>Thrive Corporate Scholar — selected out of 300 Thrive Scholars for ongoing corporate sponsorship and mentorship.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--matcha)"></div>
+          <span>Broadcast Music Inc. (BMI)</span>
+          <p>Incoming Digital Licensing Intern (Summer 2026) — focused on digital content licensing, rights management, and media distribution strategy.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--sakura)"></div>
+          <span>Aroomy</span>
+          <p>Venture Marketing Associate — developed brand identity and B2C social media strategy; created logos and storyboarded content.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--bean)"></div>
+          <span>Calmware</span>
+          <p>Venture Marketing Associate — led brand refresh and content creation across digital platforms; managed product photography and Squarespace updates.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--matcha)"></div>
+          <span>Verustruct</span>
+          <p>Venture Marketing Associate — designed and implemented a Notion-based investor CRM with Zapier automations tracking 100+ investor contacts.</p>
+        </div>
+
+        <div class="org-cell">
+          <div class="org-dot" style="background:var(--sakura)"></div>
+          <span>PrevisionLabs</span>
+          <p>Venture Marketing Associate — curated a CRM-tracked database of 100+ angel investors, filtering by location, investment thesis, and founder connections.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── Contact ──────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2>Let's Talk.</h2>
+      <p>Open to full-time roles, freelance projects, and interesting conversations — especially in Tech, Media, and Entertainment.</p>
+      <ul class="contact-links">
+        <li><a href="mailto:alexis.lam@yale.edu">alexis.lam@yale.edu</a></li>
+        <li><a href="https://linkedin.com/in/alexislam-318392275" target="_blank">LinkedIn</a></li>
+        <li><a href="#" onclick="openModal('https://www.instagram.com/', 'Instagram'); return false;">Instagram</a></li>
+        <li><a href="#" onclick="openModal('https://www.tiktok.com/', 'TikTok'); return false;">TikTok</a></li>
+        <li><a href="resume.pdf" target="_blank">Resume PDF</a></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ─── Footer ───────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Alexis Lam &nbsp;·&nbsp; Built with intention.</p>
+    </div>
+  </footer>
+
+  <!-- ─── Lightbox Modal ──────────────────────────── -->
+  <div id="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-topbar">
+        <span class="modal-title" id="modal-label">—</span>
+        <div class="modal-actions">
+          <a id="modal-open-link" href="#" target="_blank" class="modal-open-btn">Open in new tab</a>
+          <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <iframe id="modal-frame" src="" title="Content viewer" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    function openModal(src, label) {
+      document.getElementById('modal-label').textContent = label || src;
+      document.getElementById('modal-open-link').href = src;
+      document.getElementById('modal-frame').src = src;
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.getElementById('modal-frame').src = '';
+      document.body.style.overflow = '';
+    }
+
+    // Close on overlay click
+    document.getElementById('modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>
